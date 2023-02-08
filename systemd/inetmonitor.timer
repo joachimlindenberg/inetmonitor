@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor internet connection
+[Timer]
+OnBootSec=5
+OnUnitActiveSec=5
+AccuracySec=100ms
+[Install]
+WantedBy=timers.target
+

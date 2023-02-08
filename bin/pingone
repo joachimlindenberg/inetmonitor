@@ -1,0 +1,19 @@
+#!/bin/bash
+# https://stackoverflow.com/questions/9619362/running-a-cron-every-30-seconds#
+set -u
+source /etc/inetmonitor/inetmonitor.conf
+time=$(date)
+date=$(date +%F)
+p=$(ping $PINGOPTIONS)
+if [ $? -eq 0 ] ;
+then
+        s=success
+	p=""
+else
+        s=failure
+fi
+echo $time $s $p >>$LOGPATH/inetmon.$date.log
+$IMONPATH/aggr
+
+
+

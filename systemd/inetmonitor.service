@@ -1,0 +1,8 @@
+[Unit]
+Description=Monitor Internet connection
+[Service]
+ExecStart=/opt/inetmonitor/bin/pingone
+[Install]
+WantedBy=timers.target
+
+

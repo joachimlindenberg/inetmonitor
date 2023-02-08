@@ -1,0 +1,13 @@
+set -u
+source /etc/inetmonitor/inetmonitor.conf
+
+time=$(date)
+date=$(date +%F)
+
+lines="$time failure simulated failure"
+echo down >$TMPPATH/state
+echo $lines >>$LOGPATH/inetmon.$date.log
+echo $lines >>$LOGPATH/inetmon.$date.log
+
+$IMONPATH/aggr
+

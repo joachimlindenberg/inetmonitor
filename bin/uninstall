@@ -1,0 +1,12 @@
+#!/bin/bash
+# https://codewithhugo.com/just-enough-bash-to-be-dangerous/
+# exit on undefined variable
+set -u
+
+source /etc/inetmonitor/inetmonitor.conf 2>/dev/null || source ./conf/inetmonitor.conf
+
+systemctl disable --now inetmonitor.timer
+systemctl disable --now inetmonitor
+
+rm -r $TMPPATH
+

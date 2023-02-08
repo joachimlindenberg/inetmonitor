@@ -1,0 +1,26 @@
+#!/bin/bash
+set -u
+source /etc/inetmonitor/inetmonitor.conf
+
+mkdir -p $TMPPATH
+cd $TMPPATH
+
+tail -2 $LOGPATH/inetmon.$(date +%F).log >internet2lines
+newstate=$(tail -2 internet2lines | sed -nre 's/^.*\s(failure|success).*$/\1/p' | tr '\n' ',')
+oldstate=$(cat state || echo up)
+date=$(head -1 internet2lines | sed -nre 's/^(.*)\s*(failure|success).*$/\1/p')
+
+# echo $newstate$oldstate >>/tmp/internetdebug.log
+if [ $(echo $newstate$oldstate) == 'success,success,down' ] ; then
+  echo up >state
+  errors="$(grep 'failure' $LOGPATH/inetmon.$(date +%F).log | tail -10)"
+  $IMONPATH/mailcmd "`cat date`" "$date" "$TIMEZONE" "$errors"
+  echo $date >date
+else if [ $(echo $newstate$oldstate) == 'failure,failure,up' ] ; then
+  echo down >state
+  echo $date >date
+fi
+fi
+
+
+

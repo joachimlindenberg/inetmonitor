@@ -1,0 +1,11 @@
+To: Someone <test@example.com>
+From: test@example.com
+Reply-To: test@example.com
+Content-Type: text/plain;charset="utf-8"
+Subject: Internetstörung von $1 bis $2 $3
+Date: some date - ignored
+
+Internetstörung von $1 bis $2 $3. Bitte beseitigen Sie die!
+
+$4
+
