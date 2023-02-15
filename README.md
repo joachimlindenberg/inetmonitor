@@ -15,12 +15,18 @@ I am not familiar with creating packages for any distro nor do I run anything ot
 * bin/install - run that once, which creates some directories and copies default config files that you need to edit
 * you configure and test postfix or ssmtp. I used the latter, which uses a config file at /etc/ssmtp/ssmtp.conf - details are in https://linux.die.net/man/5/ssmtp.conf. Be sure to also configure a reverse alias and test sending a mail.
 * modify /etc/inetmonitor/inetmonitor.conf and /etc/inetmonitor/mailtemplate to match your configuration.
-* bin/install second time
+* bin/install - second time
 * you wait until something happens.. no, you can check configuration with bin/simdown 
 
 If that doesn´t work for you and you cannot find the issue yourself, please create an issue on this repository.
 
 The monitor does not create the picture itself. I used Excel to create it. Someone may want to create it automatically though, contributions wellcome.
+
+Known issues:
+
+* if your router disconnects automatically in order to obtain a new IP-address or for updates, the monitor doesn´t know. If you don´t want to get erroneous mails, you can use systemctl stop/start inetmonitor inetmonitor.timer around your activities (also in /etc/crontab). Also I haven´t spent time on making this a single start/stop.
+* I started experimenting with logrotate to compress the logs - will update when that is stable
+* timezone handling may have to be improved
 
 
 
