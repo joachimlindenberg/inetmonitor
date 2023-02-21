@@ -25,6 +25,7 @@ The monitor does not create the picture itself. I used Excel to create it. Someo
 Known issues:
 
 * if your router disconnects automatically in order to obtain a new IP-address or for updates, the monitor doesn´t know. If you don´t want to get erroneous mails, you can use systemctl stop/start inetmonitor inetmonitor.timer around your activities (also in /etc/crontab). Also I haven´t spent time on making this a single start/stop.
+* Quality of service is up to you. You may use something like -Q 0x24 as an argument to ping (check out e.g. https://linux.die.net/man/8/ping), you may have to configure your router or other network equipment to somehow prioritize the pings over other traffic. If you overload your network and do not prioritize the monitor, then the monitor will report outages that are just overloads.
 * I started experimenting with logrotate to compress the logs - will update when that is stable
 * timezone handling may have to be improved
 
